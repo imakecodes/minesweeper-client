@@ -19,6 +19,12 @@ class HttpClient:
             f"{self._api_base}/{resource}", headers=self.headers(**kwargs), **kwargs
         )
 
+    @retry(tries=RETRY_TRIES, delay=RETRY_DELAY)
+    def get(self, resource, **kwargs):
+        return requests.get(
+            f"{self._api_base}/{resource}", headers=self.headers(**kwargs), **kwargs
+        )
+
     def headers(self, **kwargs):
         headers = {}
         headers.update(kwargs.get("headers", {}))
