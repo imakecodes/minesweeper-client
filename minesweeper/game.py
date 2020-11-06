@@ -1,8 +1,10 @@
-import os
+from .base import HttpClient
 
 
-class Game:
-    api_base = os.getenv("MINES_API", "https://minesweeper.makecodes.dev")
+class Game(HttpClient):
+    _game_instance = None
 
-    def __init__(self):
-        print("API TEST BASE", self.api_base)
+    def create(self):
+        resp = self.post("games")
+        self._game_instance = resp.json()
+        print(self._game_instance)
