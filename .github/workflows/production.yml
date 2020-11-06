@@ -1,6 +1,8 @@
-name: Publish 📦 to PyPI test server 🐍
+name: Publish 📦 to PyPI
 
-on: push
+on:
+  push:
+    branches: [main]
 
 jobs:
   release:
@@ -18,8 +20,7 @@ jobs:
       - name: Build and publish
         env:
           TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TEST_TOKEN }}
-          TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: |
           python setup.py sdist bdist_wheel
           twine upload dist/*
