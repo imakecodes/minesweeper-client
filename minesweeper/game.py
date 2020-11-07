@@ -2,7 +2,6 @@ from http import HTTPStatus
 
 from .base import HttpClient
 from . import exceptions
-from .constants import EVENT_CLICK_NAIVE
 
 
 class Game(HttpClient):
@@ -27,8 +26,6 @@ class Game(HttpClient):
     def click(self, row, col):
         game_id = self._game_instance["id"]
         data = {
-            "game": game_id,
-            "type": EVENT_CLICK_NAIVE,
             "row": row,
             "col": col,
         }
