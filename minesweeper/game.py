@@ -29,7 +29,9 @@ class Game(HttpClient):
         data = {
             "game": game_id,
             "type": EVENT_CLICK_NAIVE,
-            "metadata": {"row": row, "col": col},
+            "row": row,
+            "col": col,
         }
+
         resp = self.post(f"games/{game_id}/events", json=data)
         return resp.json()
